@@ -1,15 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function CreatePost({ addPost }) {
   const [text, setText] = useState("");
+  const [image, setImage] = useState(null);
+  const [video, setVideo] = useState(null);
+
+  const imageInputRef = useRef(null);
+  const videoInputRef = useRef(null);
 
   const handlePost = () => {
-    if (text.trim() === "") return;
+    if (text.trim() === "" && !image && !video) return;
 
-    addPost(text);
+    addPost({
+      text,
+      image,
+      video,
+    });
+
     setText("");
+    setImage(null);
+    setVideo(null);
+  };
+
+  // Image select
+  const handleImageClick = () => {
+    imageInputRef.current.click();
+  };
+
+  // Video select
+  const handleVideoClick = () => {
+    videoInputRef.current.click();
   };
 
   return (
@@ -21,9 +43,56 @@ export default function CreatePost({ addPost }) {
         className="w-full border rounded-lg p-3 resize-none focus:outline-none"
       />
 
+      {/* Preview */}
+      {image && (
+        <img
+          src={URL.createObjectURL(image)}
+          className="mt-2 rounded-lg max-h-60"
+        />
+      )}
+
+      {video && (
+        <video
+          src={URL.createObjectURL(video)}
+          controls
+          className="mt-2 rounded-lg max-h-60"
+        />
+      )}
+
+      {/* Hidden Inputs */}
+      <input
+        type="file"
+        accept="image/*"
+        ref={imageInputRef}
+        hidden
+        onChange={(e) => setImage(e.target.files[0])}
+      />
+
+      <input
+        type="file"
+        accept="video/*"
+        ref={videoInputRef}
+        hidden
+        onChange={(e) => setVideo(e.target.files[0])}
+      />
+
       <div className="flex justify-between mt-3">
-        <button className="text-sm">📷 Photo</button>
-        <button className="text-sm">🎥 Video</button>
+        <button
+          type="button"
+          onClick={handleImageClick}
+          className="text-sm"
+        >
+          📷 Photo
+        </button>
+
+        <button
+          type="button"
+          onClick={handleVideoClick}
+          className="text-sm"
+        >
+          🎥 Video
+        </button>
+
         <button
           onClick={handlePost}
           className="bg-blue-500 text-white px-4 py-1 rounded-lg"

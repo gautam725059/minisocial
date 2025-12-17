@@ -8,12 +8,14 @@ import { posts as initialPosts } from "../Data/Post";
 export default function Feed() {
   const [posts, setPosts] = useState(initialPosts);
 
-  const addPost = (content) => {
+  // ab addPost object receive karega
+  const addPost = (data) => {
     const newPost = {
       id: Date.now(),
       name: "You",
-      content: content,
-      image: "https://picsum.photos/500/30" + Math.floor(Math.random() * 10),
+      content: data.text || "",
+      image: data.image ? URL.createObjectURL(data.image) : null,
+      video: data.video ? URL.createObjectURL(data.video) : null,
     };
 
     setPosts([newPost, ...posts]);
