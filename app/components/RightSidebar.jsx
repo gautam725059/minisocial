@@ -1,6 +1,6 @@
 export default function RightSidebar() {
   return (
-    // ❌ mobile pe hide | ✅ md+ pe show
+    // ❌ mobile pe hide | ✅ lg+ pe show
     <div className="hidden lg:block w-1/5 p-4 space-y-4">
       
       {/* People you may know */}
@@ -10,28 +10,28 @@ export default function RightSidebar() {
         </h3>
 
         <div className="space-y-3">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 opacity-70 cursor-not-allowed">
             <img
               src="https://i.pravatar.cc/35"
               className="rounded-full"
             />
-            <p className="text-gray-300">Aman Gupta</p>
+            <p className="text-gray-500">Aman Gupta</p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 opacity-70 cursor-not-allowed">
             <img
               src="https://i.pravatar.cc/36"
               className="rounded-full"
             />
-            <p className="text-gray-300">Neha Verma</p>
+            <p className="text-gray-500">Neha Verma</p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 opacity-70 cursor-not-allowed">
             <img
               src="https://i.pravatar.cc/37"
               className="rounded-full"
             />
-            <p className="text-gray-300">Rohit Singh</p>
+            <p className="text-gray-500">Rohit Singh</p>
           </div>
         </div>
       </div>

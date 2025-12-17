@@ -22,12 +22,10 @@ export default function Feed() {
   };
 
   return (
-    <div className="w-3/5 p-4 space-y-4">
-      <CreatePost addPost={addPost} />
+   <div className="w-full lg:w-3/5 p-4 space-y-4">
+  <CreatePost addPost={addPost} />
+  {posts.map(post => <PostCard key={post.id} post={post} />)}
+</div>
 
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
-    </div>
   );
 }

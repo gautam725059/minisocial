@@ -1,30 +1,36 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Navbar from "./components/Navbar";
-import LeftSidebar from "./components/LeftSidebar";
+import { useState } from "react";
 import Feed from "./components/Feed";
+import LeftSidebar from "./components/LeftSidebar";
+import Navbar from "./components/Navbar";
 import RightSidebar from "./components/RightSidebar";
 
-export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/login"); // redirect if not logged in
-    }
-  }, []);
+export default function AppLayout() {
+  const [leftOpen, setLeftOpen] = useState(false);
 
   return (
-    <>
-      <Navbar />
-      <div className="flex bg-gray-100 min-h-screen">
-        <LeftSidebar />
-        <Feed />
-        <RightSidebar />
+    <div className="flex bg-black text-white min-h-screen">
+      {/* Left Sidebar */}
+      < LeftSidebar isOpen={leftOpen} onClose={() => setLeftOpen(false)} />
+
+      <div className="flex-1 flex flex-col">
+        {/* Navbar */}
+        < Navbar onLeftSidebarToggle={() => setLeftOpen(true)} />
+
+        {/* Main Content */}
+        <div className="flex flex-1 p-4 gap-4">
+          {/* Feed */}
+          <div className="w-full lg:w-3/5 space-y-4">
+            <Feed/>
+          </div>
+
+          {/* Right Sidebar */}
+          <div className="hidden lg:block w-1/5">
+            < RightSidebar/>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
