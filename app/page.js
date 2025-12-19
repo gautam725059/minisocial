@@ -10,7 +10,7 @@ export default function AppLayout() {
   const [leftOpen, setLeftOpen] = useState(false);
 
   return (
-    <div className="flex bg-black text-white min-h-screen">
+    <div className="flex gap-6 bg-black text-white min-h-screen">
       {/* Left Sidebar */}
       < LeftSidebar isOpen={leftOpen} onClose={() => setLeftOpen(false)} />
 
@@ -26,7 +26,7 @@ export default function AppLayout() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="hidden lg:block w-1/5">
+          <div className=" hidden lg:block ">
             < RightSidebar/>
           </div>
         </div>

@@ -3,15 +3,15 @@
 export default function Navbar({ onLeftSidebarToggle }) {
   return (
     <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-black text-white border-b border-neutral-800 sticky top-0 z-50">
-      {/* SocialApp name triggers LeftSidebar on mobile */}
+      {/* Left: Logo / SocialApp */}
       <h1
-        className="text-lg sm:text-xl font-bold text-pink-500 cursor-pointer md:hidden"
-        onClick={onLeftSidebarToggle}
+        className="text-lg sm:text-xl font-bold text-pink-500 cursor-pointer"
+        onClick={onLeftSidebarToggle} // click triggers sidebar
       >
         SocialApp
       </h1>
 
-      {/* Desktop Search */}
+      {/* Center: Search (desktop) */}
       <input
         type="text"
         placeholder="Search friends..."
