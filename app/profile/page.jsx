@@ -15,7 +15,7 @@ export default function ProfilePage() {
 
           {/* Info */}
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">Your Name</h1>
+            <h1 className="text-2xl font-bold">Gautam Kumar</h1>
             <p className="text-gray-400 text-sm mb-4">
               Full Stack Developer 🚀
             </p>
