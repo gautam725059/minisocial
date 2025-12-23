@@ -51,6 +51,9 @@ export default function Signup() {
         >
           Create Account
         </button>
+        <button className="w-full px-4 bg-amber-200 text-black mb-3 mt-3 p-2 rounded">
+          continue with google
+        </button>
       </div>
     </div>
   );

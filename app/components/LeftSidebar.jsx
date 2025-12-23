@@ -1,15 +1,23 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 const menuItems = [
-  "Profile",
-  "Find Friends",
-  "Analytics",
-  "Settings",
-  "Security",
-  "Logout",
+  { label: "Profile", path: "/profile" },
+  { label: "Find-frinds", path: "/Find-frinds" },
+  { label: "Analytics", path: "/Analytics" },
+  { label: "Settings", path: "/settings" },
+  ,
 ];
 
 export default function LeftSidebar({ isOpen, onClose }) {
+  const router = useRouter();
+
+  const handleClick = (path) => {
+    onClose();        // close sidebar (mobile)
+    router.push(path); // navigate
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -28,24 +36,25 @@ export default function LeftSidebar({ isOpen, onClose }) {
           ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0
         `}
       >
-        <div className="bg-neutral-900 rounded-xl shadow p-4 border border-neutral-800 h-full">
+        <div className="rounded-xl border border-neutral-800 p-4 h-full">
           {/* Close button mobile */}
           <button
             onClick={onClose}
-            className="md:hidden mb-4 text-right w-full text-gray-400"
+            className="md:hidden mb-4 w-full text-right text-gray-400"
           >
             ✕ Close
           </button>
 
-          {/* Menu items */}
+          {/* Menu */}
           <ul className="space-y-3">
             {menuItems.map((item) => (
               <li
-                key={item}
-                onClick={onClose}
-                className="cursor-pointer px-3 py-2 rounded-lg hover:bg-neutral-800 transition"
+                key={item.label}
+                onClick={() => handleClick(item.path)}
+                className="cursor-pointer px-3 py-2 rounded-lg
+                           hover:bg-neutral-800 transition"
               >
-                {item}
+                {item.label}
               </li>
             ))}
           </ul>
